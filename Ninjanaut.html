@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ninjanaut</title>
+</head>
+<body>
+<script>
+
+//KONSTANTY:
+var CANVAS_WIDTH=800;
+var CANVAS_HEIGHT=600;
+var NANONAUT_WIDTH=181;
+var NANONAUT_HEIGHT=229;
+var ZEME_Y=540;
+
+//NASTAVENI
+var canvas=document.createElement('canvas');
+var c=canvas.getContext('2d');
+canvas.width=CANVAS_WIDTH;
+canvas.height=CANVAS_HEIGHT;
+document.body.appendChild(canvas);
+var NANONAUT_Y_ZRYCHLENI=1;
+var nanonautYrychlost=0;
+
+var nanonautImage=new Image();
+nanonautImage.src='assets/entity/nanonaut.png';
+
+var pozadiImage=new Image();
+pozadiImage.src='assets/backgrounds/backgroundBasic.png';
+
+var nanonautX=50;
+var nanonautY=40;
+
+window.addEventListener('load', start);
+
+function start() {
+window.requestAnimationFrame(mainLoop);
+}
+ 
+//HLAVNI SMYCKA
+function mainLoop(){
+update();
+draw();
+window.requestAnimationFrame(mainLoop)
+}
+
+//AKTUALIZACE
+function update(){
+// Aktualizace Nanonautaf
+nanonautY=nanonautY+nanonautYRychlost;
+nanonautYRychlost=nanonautYRychlost+NANONAUT_Y_ZRYCHLENI;
+if (nanonautY>(ZEME_Y-NANONAUT_HEIGHT)){
+nanonautY=ZEME_Y-NANONAUT_HEIGHT;
+nanonautYRychlost=0;
+}
+}
+
+//ZOBRAZENI
+function draw(){
+//OBLOHA
+c.fillStyle='LightSkyBlue';
+c.fillRect(0, 0, CANVAS_WIDTH, ZEME_Y-40);
+
+c.drawImage(pozadiImage, 0, -210);
+
+//ZEME
+c.fillStyle='green';
+c.fillRect(0, ZEME_Y-40, CANVAS_WIDTH, CANVAS_HEIGHT-ZEME_Y+40);
+//NANONAUT
+c.drawImage(nanonautImage, nanonautX, nanonautY);
+}
+</script>
+</body>
+</html>
