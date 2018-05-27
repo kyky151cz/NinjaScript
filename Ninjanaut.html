@@ -17,15 +17,17 @@
         var NANONAUT_HEIGHT = 229;
         var ZEME_Y = 540;
         var NANONAUT_Y_ZRYCHLENI = 1;
+        var NANOANUT_SKOK_RYCHLOST = 20;
+        var POZADI_WIDTH = 1000;
+
         var nanonautYRychlost = 0;
         var klav_W = 87;
         var klav_Wstisknuta = false;
         var nanonautVeVzduchu = false;
-        var NANOANUT_SKOK_RYCHLOST = 20;
+
         var nanonaut_Xpohyb = 5;
         var kameraX = 0;
         var kameraY = 0;
-        var POZADI_WIDTH = 1000;
 
 
 
@@ -75,6 +77,7 @@
 
         //AKTUALIZACE
         function update() {
+
             nanonautX = nanonautX + nanonaut_Xpohyb;
             if (klav_Wstisknuta && !nanonautVeVzduchu) {
                 nanonautYRychlost = -NANOANUT_SKOK_RYCHLOST;
@@ -86,25 +89,29 @@
             if (nanonautY > (ZEME_Y - NANONAUT_HEIGHT)) {
                 nanonautY = ZEME_Y - NANONAUT_HEIGHT;
                 nanonautYRychlost = 0;
+
                 nanonautVeVzduchu = false;
-                //Aktualizace kamery
-                kameraX = nanonautX - 150
             }
+            //Aktualizace kamery
+            kameraX = nanonautX - 150;
+
         }
 
         //ZOBRAZENI
         function draw() {
-            //POZADI
-            var pozadiX = -(kameraX % POZADI_WIDTH);
-            c.drawImage(pozadiImage, pozadiX, -210);
+
             //OBLOHA
             c.fillStyle = 'LightSkyBlue';
             c.fillRect(0, 0, CANVAS_WIDTH, ZEME_Y - 40);
 
-            c.drawImage(pozadiImage, 0 - kameraX, -210);
+            //POZADI
+            var pozadiX = -(kameraX % POZADI_WIDTH);
+            c.drawImage(pozadiImage, pozadiX, -210);
+            c.drawImage(pozadiImage, pozadiX + POZADI_WIDTH, -210);
+           // c.drawImage(pozadiImage, 0 - kameraX, -210);
 
             //ZEME
-            c.fillStyle = 'green';
+            c.fillStyle = 'ForestGreen';
             c.fillRect(0, ZEME_Y - 40, CANVAS_WIDTH, CANVAS_HEIGHT - ZEME_Y + 40);
             //NANONAUT
             c.drawImage(nanonautImage, nanonautX - kameraX, nanonautY - kameraY);
