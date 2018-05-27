@@ -19,15 +19,18 @@
         var NANONAUT_Y_ZRYCHLENI = 1;
         var NANOANUT_SKOK_RYCHLOST = 20;
         var POZADI_WIDTH = 1000;
+        var ANIMACENanonautPocetSnimkuRady = 5;
+        var ANIMACENanonautPocetSnimkuClekem = 7;
 
         var nanonautYRychlost = 0;
-        var klav_W = 87;
         var klav_Wstisknuta = false;
         var nanonautVeVzduchu = false;
 
+        var klav_W = 87;
         var nanonaut_Xpohyb = 5;
         var kameraX = 0;
         var kameraY = 0;
+        var nanonautSnimekNr=0;
 
 
 
@@ -40,7 +43,7 @@
         document.body.appendChild(canvas);
 
         var nanonautImage = new Image();
-        nanonautImage.src = 'assets/entity/nanonaut.png';
+        nanonautImage.src = 'assets/entity/AnimatedNanonaut.png';
 
         var pozadiImage = new Image();
         pozadiImage.src = 'assets/backgrounds/backgroundBasic.png';
