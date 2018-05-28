@@ -30,7 +30,7 @@
         var nanonaut_Xpohyb = 5;
         var kameraX = 0;
         var kameraY = 0;
-        var nanonautSnimekNr=0;
+        var nanonautSnimekNr = 0;
 
 
 
@@ -117,7 +117,13 @@
             c.fillStyle = 'ForestGreen';
             c.fillRect(0, ZEME_Y - 40, CANVAS_WIDTH, CANVAS_HEIGHT - ZEME_Y + 40);
             //NANONAUT
-            c.drawImage(nanonautImage, nanonautX - kameraX, nanonautY - kameraY);
+            var nanonautSpriteSheetRada = Math.floor(nanonautSnimekNr / ANIMACENanonautPocetSnimkuRady);
+            var nanonautSpriteSheetSloupec = nanonautSnimekNr % ANIMACENanonautPocetSnimkuRady;
+            var nanonautSpriteSheetX = nanonautSpriteSheetSloupec * NANONAUT_WIDTH;
+            var nanonautSpriteSheetY = nanonautSpriteSheetRada * NANONAUT_HEIGHT;
+            c.drawImage(nanonautImage, nanonautSpriteSheetX, nanonautSpriteSheetY,
+                NANONAUT_WIDTH, NANONAUT_HEIGHT, nanonautX - kameraX,
+                nanonautY - kameraY, NANONAUT_WIDTH, NANONAUT_HEIGHT);
         }
     </script>
 </body>
