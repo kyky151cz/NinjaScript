@@ -94,9 +94,16 @@
                 nanonautYRychlost = 0;
 
                 nanonautVeVzduchu = false;
+
+                //AKTUALIZACE ANIMACE
+                nanonautSnimekNr = nanonautSnimekNr + 1;
+                if (nanonautSnimekNr >= ANIMACENanonautPocetSnimkuClekem) 
+                { nanonautSnimekNr = 0 }
+                ;
             }
             //Aktualizace kamery
             kameraX = nanonautX - 150;
+
 
         }
 
